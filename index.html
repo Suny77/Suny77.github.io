@@ -1,47 +1,81 @@
-<head> 
-    <meta charset="utf-8" />
-    <title>Калькулятор_laba3</title>
-    <style type="text/css">
-        #calculator * {font-size: 16px;}
-        #calculator table {border: solid 3px silver; border-spacing: 3px; background-color: #EEE; }
-        #calculator table td {border-spacing: 3px;}
-        input.display {width: 166px; text-align: right;}
-        td.buttons {border-top: solid 1px silver;}  
-        input[type= button] {width: 40px; height: 30px;}
-    </style>
-    </head>
-
-    <body>
-    <form name="calc" id="calculator">
-        <table>
-        <tr>
-        <td>
-            <input type="text" name="input" size="16" class="display">
-        </td>
-        </tr>
-        <tr>
-        <td class="buttons">
-            <input type="button" name="один" value="1" OnClick="calc.input.value += '1'">
-            <input type="button" name="два" value="2" OnClick="calc.input.value += '2'">
-            <input type="button" name="три" value="3" OnClick="calc.input.value += '3'">
-            <input type="button" name="плюс" value="+" OnClick="calc.input.value += '+'">
-            <br>
-            <input type="button" name="четыре" value="4" OnClick="calc.input.value += '4'">
-            <input type="button" name="пять" value="5" OnClick="calc.input.value += '5'">
-            <input type="button" name="шесть" value="6" OnClick="calc.input.value += '6'">
-            <input type="button" name="минус" value="-" OnClick="calc.input.value += '-'">
-            <br>
-            <input type="button" name="семь" value="7" OnClick="calc.input.value += '7'">
-            <input type="button" name="восемь" value="8" OnClick="calc.input.value += '8'">
-            <input type="button" name="девять" value="9" OnClick="calc.input.value += '9'">
-            <input type="button" name="умножить" value="x" OnClick="calc.input.value += '*'">
-            <br>
-            <input type="button" name="очистить" value="c" OnClick="calc.input.value = ''">
-            <input type="button" name="ноль" value="0" OnClick="calc.input.value += '0'">
-            <input type="button" name="результат" value="=" OnClick="calc.input.value = eval(calc.input.value)">
-            <input type="button" name="делить"  value="/" OnClick="calc.input.value += '/'">
-        </td>
-        </tr>
-        </table>
-    </form>
-    </body>
+<html>
+   <head>
+      <script>
+         //отображение
+         function dis(val)
+         {
+             document.getElementById("result").value+=val
+         }
+           
+         //вычисление и результат
+         function solve()
+         {
+             let x = document.getElementById("result").value
+             let y = eval(x)
+             document.getElementById("result").value = y
+         }
+           
+         //очистка дисплея
+         function clr()
+         {
+             document.getElementById("result").value = ""
+         }
+      </script>
+      <style>
+         .title{
+         margin-bottom: 10px;
+         text-align:center;
+         width: 180px;
+         color:purple;
+         border: solid black 2px;
+         }
+  
+         input[type="button"]
+         {
+         background-color:silver;
+         color: black;
+         border: solid black 2px;
+         width:100%
+         }
+  
+         input[type="text"]
+         {
+         background-color:white;
+         border: solid black 2px;
+         width:100%
+         }
+      </style>
+   </head>
+   <body>
+      <div class = title >Калькулятор Бояркина</div>
+      <table border="1">
+         <tr>
+            <td colspan="4"><input type="text" id="result"/></td>
+         </tr>
+         <tr>
+            <td><input type="button" value="1" onclick="dis('1')"/> </td>
+            <td><input type="button" value="2" onclick="dis('2')"/> </td>
+            <td><input type="button" value="3" onclick="dis('3')"/> </td>
+            <td><input type="button" value="/" onclick="dis('/')"/> </td>
+         </tr>
+         <tr>
+            <td><input type="button" value="4" onclick="dis('4')"/> </td>
+            <td><input type="button" value="5" onclick="dis('5')"/> </td>
+            <td><input type="button" value="6" onclick="dis('6')"/> </td>
+            <td><input type="button" value="-" onclick="dis('-')"/> </td>
+         </tr>
+         <tr>
+            <td><input type="button" value="7" onclick="dis('7')"/> </td>
+            <td><input type="button" value="8" onclick="dis('8')"/> </td>
+            <td><input type="button" value="9" onclick="dis('9')"/> </td>
+            <td><input type="button" value="+" onclick="dis('+')"/> </td>
+         </tr>
+         <tr>
+            <td><input type="button" value="c" onclick="clr()"/> </td>
+            <td><input type="button" value="0" onclick="dis('0')"/> </td>
+            <td><input type="button" value="=" onclick="solve()"/> </td>
+            <td><input type="button" value="*" onclick="dis('*')"/> </td>
+         </tr>
+      </table>
+   </body>
+</html>   
