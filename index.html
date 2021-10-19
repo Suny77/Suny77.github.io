@@ -2,24 +2,47 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script>
-         //отображение
-         function dis(val)
-         {
-             document.getElementById("result").value+=val
+
+      var num1;
+      var op;
+ 
+      function pressBtn(value){
+        var prev = document.forms["calc"]["display"].value;
+         if (!(prev == "" && value==0)){
+           var newval = prev+value;
+             document.forms["calc"]["display"].value = newval;
          }
-           
-         //вычисление и результат
-         function solve()
-         {
-             let x = document.getElementById("result").value
-             let y = eval(x)
-             document.getElementById("result").value = y
+   
+       }
+       function pressOP(operator){
+         op = operator;
+         var display = document.forms["calc"]["display"].value;
+         num1 = parseInt(display);
+         document.forms["calc"]["display"].value = "";
+       }
+       function result(){
+         var display = document.forms["calc"]["display"].value;
+         var num2 = parseInt(display);
+         switch(op){
+         case "D":
+         var ans=num1/num2;
+         break;
+         case "Y":
+         var ans=num1*num2;
+         break;
+         case "P":
+         var ans=num1+num2;
+         break;
+         case "M":
+         var ans=num1-num2;
+         break; 
          }
-           
+         document.forms["calc"]["display"].value = ans;
+       }      
          //очистка дисплея
          function clr()
          {
-             document.getElementById("result").value = ""
+             document.getElementById("display").value = ""
          }
       </script>
       <style>
@@ -53,34 +76,38 @@
    </head>
    <body>
       <div class = title >Калькулятор Бояркина</div>
+<div>
+      <form name="calc">
       <table border="1">
          <tr>
-            <td colspan="4"><input type="text" id="result"/></td>
+            <td colspan="4"><input type="text" id="display"/></td>
          </tr>
          <tr>
-            <td><input type="button" value="1" onclick="dis('1')"/> </td>
-            <td><input type="button" value="2" onclick="dis('2')"/> </td>
-            <td><input type="button" value="3" onclick="dis('3')"/> </td>
-            <td><input type="button" value="/" onclick="dis('/')"/> </td>
+            <td><input type="button" value="1" onclick="pressBtn('1')"/> </td>
+            <td><input type="button" value="2" onclick="pressBtn('2')"/> </td>
+            <td><input type="button" value="3" onclick="pressBtn('3')"/> </td>
+            <td><input type="button" value="/" onclick="pressOP('D')"/> </td>
          </tr>
          <tr>
-            <td><input type="button" value="4" onclick="dis('4')"/> </td>
-            <td><input type="button" value="5" onclick="dis('5')"/> </td>
-            <td><input type="button" value="6" onclick="dis('6')"/> </td>
-            <td><input type="button" value="-" onclick="dis('-')"/> </td>
+            <td><input type="button" value="4" onclick="pressBtn('4')"/> </td>
+            <td><input type="button" value="5" onclick="pressBtn('5')"/> </td>
+            <td><input type="button" value="6" onclick="pressBtn('6')"/> </td>
+            <td><input type="button" value="-" onclick="pressOP('M')"/> </td>
          </tr>
          <tr>
-            <td><input type="button" value="7" onclick="dis('7')"/> </td>
-            <td><input type="button" value="8" onclick="dis('8')"/> </td>
-            <td><input type="button" value="9" onclick="dis('9')"/> </td>
-            <td><input type="button" value="+" onclick="dis('+')"/> </td>
+            <td><input type="button" value="7" onclick="pressBtn('7')"/> </td>
+            <td><input type="button" value="8" onclick="pressBtn('8')"/> </td>
+            <td><input type="button" value="9" onclick="pressBtn('9')"/> </td>
+            <td><input type="button" value="+" onclick="pressOP('P')"/> </td>
          </tr>
          <tr>
             <td><input type="button" value="c" onclick="clr()"/> </td>
-            <td><input type="button" value="0" onclick="dis('0')"/> </td>
-            <td><input type="button" value="=" onclick="solve()"/> </td>
-            <td><input type="button" value="*" onclick="dis('*')"/> </td>
+            <td><input type="button" value="0" onclick="pressBtn('0')"/> </td>
+            <td><input type="button" value="=" onclick="result()"/> </td>
+            <td><input type="button" value="*" onclick="pressOP('Y')"/> </td>
          </tr>
       </table>
+      </form>
+</div>
    </body>
-</html>   
+</html> 
